@@ -1,0 +1,40 @@
+<h1>Shadowsocks安装及使用说明</h1>
+<h2>安装SS客户端</h2>
+<h3>Ubuntu 用户</h3>
+<p>方法一: 使用命令行客户端</p>
+<pre><code class="language-bash">$ sudo apt-get update
+$ sudo apt-get install python-pip
+$ sudo pip install shadowsocks
+</code></pre>
+<p>之后在当前目录下创建一个名为 config.json 的文件，内容如下:</p>
+<pre><code>{
+    &quot;server&quot; : &quot;Server_IP&quot;,
+    &quot;server_port&quot; : Server_Port,
+    &quot;local_address&quot; : &quot;127.0.0.1&quot;,
+    &quot;local_port&quot; : 1080,
+    &quot;password&quot; : &quot;SS_Password&quot;,
+    &quot;timeout&quot; : 600,
+    &quot;method&quot; : &quot;aes-256-cfb&quot;,
+    &quot;fast_open&quot; : false
+}
+</code></pre>
+<p>将上述内容中的 <strong>Server_IP</strong>, <strong>Server_Port</strong>, <strong>SS_Password</strong> 修改为你从Email中获取的SS信息即可。<br>
+之后运行如下命令启动Shadowsocks:</p>
+<pre><code class="language-bash">$ sudo sslocal -c config.json -d start
+</code></pre>
+<p>方法二: 使用GUI客户端
+在终端执行如下命令:</p>
+<pre><code class="language-bash">$ sudo add-apt-repository ppa:hzwhuang/ss-qt5
+$ sudo apt-get update
+$ sudo apt-get install shadowsocks-qt5
+</code></pre>
+<p>之后打开安装的软件，按提示填写从Email获取的内容即可，填写完毕后点击启动.</p>
+<h3>Windows 用户</h3>
+<p>点击 <a href="http://gossh.co/ss/Shadowsocks.exe">这里</a> 下载并安装，打开软件后按照提示填写从Email获取的内容即可.</p>
+<h2>设置浏览器代理</h2>
+<p>设置代理的方法可以查看 <a href="http://www.360doc.com/content/12/1124/10/2283188_249898912.shtml">这里</a>,找到设置代理的位置后，选择设置 <strong>SOCKSv5</strong> 代理,之后填写IP为 127.0.0.1, 端口号为 1080。有些浏览器可能没有代理类型(这里是SOCKSv5)的选项，此时，可以在填写IP时添加 socks5 前缀,即填写 socks5://IP</p>
+<p>保存设置，并确保shadowsocks客户端已经启动，此时在浏览器地址栏输入 Google 地址:</p>
+<blockquote>
+<p>https://www.google.com</p>
+</blockquote>
+<p>如果设置成功，则此时会打开 Google 的首页。</p>
